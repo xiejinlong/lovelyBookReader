@@ -5,7 +5,7 @@
     <option name="formatter" value="ECLIPSE" />
     <option name="id" value="1468378552705" />
     <option name="name" value="default" />
-    <option name="pathToConfigFileJava" value="$USER_HOME$/Downloads/tutor-android-student/code-style/fenbi-android-formatting.xml" />
+    <option name="pathToConfigFileJava" value="$PROJECT_DIR$/../../tutor-android-student/code-style/fenbi-android-formatting.xml" />
     <option name="selectedJavaProfile" value="Android" />
   </component>
   <component name="EntryPointsManager">
