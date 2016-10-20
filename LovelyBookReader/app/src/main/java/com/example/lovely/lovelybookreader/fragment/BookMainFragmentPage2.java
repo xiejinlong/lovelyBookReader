@@ -21,17 +21,18 @@ import java.util.List;
 
 public class BookMainFragmentPage2 extends Fragment implements View.OnClickListener{
     private List<Fragment> fragmentList;
-    private ViewPager viewPager;
+    private ChildViewPager viewPager;
     private TextView textView1,textView2,textView3;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.book_main_page_2,null);
-        viewPager = (ViewPager) view.findViewById(R.id.book_library_view_pager);
+        viewPager = (ChildViewPager) view.findViewById(R.id.book_library_view_pager);
         textView1 = (TextView) view.findViewById(R.id.book_library_title_1);
         textView2 = (TextView) view.findViewById(R.id.book_library_title_2);
         textView3 = (TextView) view.findViewById(R.id.book_library_title_3);
         textView1.setBackgroundColor(Color.RED);
+        initViewPager();
         return view;
     }
 
