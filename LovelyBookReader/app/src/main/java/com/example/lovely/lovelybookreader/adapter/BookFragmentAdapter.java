@@ -27,4 +27,5 @@ public class BookFragmentAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return mFragmentList.size();
     }
+
 }
