@@ -11,18 +11,28 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:id="@+id/book_title_tab"
-        android:background="@android:color/darker_gray">
+        android:background="@color/tab_background_color">
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            android:src="@drawable/book_configure"
+            android:layout_weight="1"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/book_shelf"
             android:gravity="center"
             android:text="书架"
+            android:textColor="@drawable/tab_text_color_selector"
+            android:textSize="24sp"
             android:layout_weight="1"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="图书"
+            android:textSize="24sp"
+            android:textColor="@drawable/tab_text_color_selector"
             android:id="@+id/book_library"
             android:gravity="center"
             android:layout_weight="1"/>
@@ -30,7 +40,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="小说"
+            android:textColor="@drawable/tab_text_color_selector"
             android:id="@+id/book_novel"
+            android:textSize="24sp"
             android:gravity="center"
             android:layout_weight="1"/>
     </LinearLayout>

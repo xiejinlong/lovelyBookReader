@@ -1,6 +1,5 @@
 package com.example.lovely.lovelybookreader.fragment;
 
-import android.graphics.Color;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -31,7 +30,7 @@ public class BookMainFragmentPage2 extends Fragment implements View.OnClickListe
         textView1 = (TextView) view.findViewById(R.id.book_library_title_1);
         textView2 = (TextView) view.findViewById(R.id.book_library_title_2);
         textView3 = (TextView) view.findViewById(R.id.book_library_title_3);
-        textView1.setBackgroundColor(Color.RED);
+        textView1.setSelected(true);
         initViewPager();
         return view;
     }
@@ -56,19 +55,19 @@ public class BookMainFragmentPage2 extends Fragment implements View.OnClickListe
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                        textView1.setBackgroundColor(Color.RED);
-                        textView2.setBackgroundColor(Color.GRAY);
-                        textView3.setBackgroundColor(Color.GRAY);
+                        textView1.setSelected(true);
+                        textView2.setSelected(false);
+                        textView3.setSelected(false);
                         break;
                     case 1:
-                        textView1.setBackgroundColor(Color.GRAY);
-                        textView2.setBackgroundColor(Color.RED);
-                        textView3.setBackgroundColor(Color.GRAY);
+                        textView1.setSelected(false);
+                        textView2.setSelected(true);
+                        textView3.setSelected(false);
                         break;
                     case 2:
-                        textView1.setBackgroundColor(Color.GRAY);
-                        textView3.setBackgroundColor(Color.RED);
-                        textView2.setBackgroundColor(Color.GRAY);
+                        textView1.setSelected(false);
+                        textView2.setSelected(false);
+                        textView3.setSelected(true);
                         break;
                     default:
                         break;
@@ -85,21 +84,21 @@ public class BookMainFragmentPage2 extends Fragment implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.book_library_title_1:
-                textView1.setBackgroundColor(Color.RED);
-                textView2.setBackgroundColor(Color.GRAY);
-                textView3.setBackgroundColor(Color.GRAY);
+                textView1.setSelected(true);
+                textView2.setSelected(false);
+                textView3.setSelected(false);
                 viewPager.setCurrentItem(0);
                 break;
             case R.id.book_library_title_2:
-                textView1.setBackgroundColor(Color.GRAY);
-                textView2.setBackgroundColor(Color.RED);
-                textView3.setBackgroundColor(Color.GRAY);
+                textView1.setSelected(false);
+                textView2.setSelected(true);
+                textView3.setSelected(false);
                 viewPager.setCurrentItem(1);
                 break;
             case R.id.book_library_title_3:
-                textView1.setBackgroundColor(Color.GRAY);
-                textView3.setBackgroundColor(Color.RED);
-                textView2.setBackgroundColor(Color.GRAY);
+                textView1.setSelected(false);
+                textView2.setSelected(false);
+                textView3.setSelected(true);
                 viewPager.setCurrentItem(2);
                 break;
             default:

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
@@ -19,6 +20,7 @@ import com.example.lovely.lovelybookreader.fragment.BookMainFragmentPage3;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 public class MainActivity extends FragmentActivity implements View.OnClickListener{
     private ViewPager viewPager;
@@ -30,7 +32,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         initView();
         initViewPager();
@@ -52,18 +54,18 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         bookShelfText.setOnClickListener(this);
         bookText.setOnClickListener(this);
         novelText.setOnClickListener(this);
-        bookShelfText.setBackgroundColor(Color.RED);
+        bookShelfText.setSelected(true);
     }
 
     private void initViewPager() {
         fragmentList = new ArrayList<>();
-        BookMainFragmentPage1 fragmentPage1 = new BookMainFragmentPage1();
-        BookMainFragmentPage2 fragmentPage2 = new BookMainFragmentPage2();
+       BookMainFragmentPage1 fragmentPage1 = new BookMainFragmentPage1();
+       BookMainFragmentPage2 fragmentPage2 = new BookMainFragmentPage2();
         BookMainFragmentPage3 fragmentPage3 = new BookMainFragmentPage3();
         fragmentList.add(fragmentPage1);
-        fragmentList.add(fragmentPage2);
-        fragmentList.add(fragmentPage3);
-        viewPager.setAdapter(new BookFragmentAdapter(getSupportFragmentManager(),fragmentList));
+      fragmentList.add(fragmentPage2);
+       fragmentList.add(fragmentPage3);
+       viewPager.setAdapter(new BookFragmentAdapter(getSupportFragmentManager(),fragmentList));
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -74,19 +76,19 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                        bookShelfText.setBackgroundColor(Color.RED);
-                        bookText.setBackgroundColor(Color.GRAY);
-                        novelText.setBackgroundColor(Color.GRAY);
+                       bookShelfText.setSelected(true);
+                        bookText.setSelected(false);
+                        novelText.setSelected(false);
                         break;
                     case 1:
-                        bookShelfText.setBackgroundColor(Color.GRAY);
-                        bookText.setBackgroundColor(Color.RED);
-                        novelText.setBackgroundColor(Color.GRAY);
+                        bookShelfText.setSelected(false);
+                        bookText.setSelected(true);
+                        novelText.setSelected(false);
                         break;
                     case 2:
-                        bookShelfText.setBackgroundColor(Color.GRAY);
-                        novelText.setBackgroundColor(Color.RED);
-                        bookText.setBackgroundColor(Color.GRAY);
+                        bookShelfText.setSelected(false);
+                        novelText.setSelected(true);
+                        bookText.setSelected(false);
                         break;
                     default:
                         break;
@@ -98,42 +100,27 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
             }
         });
-        viewPager.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                switch (motionEvent.getAction()) {
-                    case MotionEvent.ACTION_MOVE:
-                        viewPager.requestDisallowInterceptTouchEvent(true);
-                        break;
-                    case MotionEvent.ACTION_UP:
-                    case MotionEvent.ACTION_CANCEL:
-                        viewPager.requestDisallowInterceptTouchEvent(false);
-                        break;
-                }
-                return true;
-            }
-        });
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.book_shelf:
-                bookShelfText.setBackgroundColor(Color.RED);
-                bookText.setBackgroundColor(Color.GRAY);
-                novelText.setBackgroundColor(Color.GRAY);
+                bookShelfText.setSelected(true);
+                bookText.setSelected(false);
+                novelText.setSelected(false);
                 viewPager.setCurrentItem(0);
                 break;
             case R.id.book_library:
-                bookShelfText.setBackgroundColor(Color.GRAY);
-                bookText.setBackgroundColor(Color.RED);
-                novelText.setBackgroundColor(Color.GRAY);
+                bookShelfText.setSelected(true);
+                bookText.setSelected(true);
+                novelText.setSelected(false);
                 viewPager.setCurrentItem(1);
                 break;
             case R.id.book_novel:
-                bookShelfText.setBackgroundColor(Color.GRAY);
-                novelText.setBackgroundColor(Color.RED);
-                bookText.setBackgroundColor(Color.GRAY);
+                bookShelfText.setSelected(true);
+                bookText.setSelected(false);
+                novelText.setSelected(true);
                 viewPager.setCurrentItem(2);
                 break;
             default:
@@ -150,5 +137,4 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             finish();
         }
     }
-
 }

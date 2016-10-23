@@ -24,10 +24,6 @@ public class BookMainFragmentPage3 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.book_main_page_3,null);
-        viewPager = (ViewPager) view.findViewById(R.id.book_novel_view_pager);
-        textView1 = (TextView) view.findViewById(R.id.book_novel_title_1);
-        textView2 = (TextView) view.findViewById(R.id.book_novel_title_2);
-        textView3 = (TextView) view.findViewById(R.id.book_novel_title_3);
         return view;
     }
 }
