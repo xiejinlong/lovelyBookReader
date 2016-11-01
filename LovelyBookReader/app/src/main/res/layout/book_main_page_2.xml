@@ -2,44 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-   <LinearLayout
-       android:layout_width="match_parent"
+   <TextView
+       android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:orientation="horizontal"
-       android:layout_alignParentTop="true"
-       android:background="@color/tab_background_color"
-       android:id="@+id/book_library_text_title">
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:id="@+id/book_library_title_1"
-           android:text = "标签1"
-           android:textColor="@drawable/tab_text_color_selector"
-           android:textSize="20sp"
-           android:gravity="center"
-           android:layout_weight="1"/>
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:id="@+id/book_library_title_2"
-           android:text="标签2"
-           android:textColor="@drawable/tab_text_color_selector"
-           android:textSize="20sp"
-           android:gravity="center"
-           android:layout_weight="1"/>
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:id="@+id/book_library_title_3"
-           android:text="标签3"
-           android:textColor="@drawable/tab_text_color_selector"
-           android:textSize="20sp"
-           android:gravity="center"
-           android:layout_weight="1"/>
-   </LinearLayout>
-    <com.example.lovely.lovelybookreader.fragment.ChildViewPager
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/book_library_view_pager">
-    </com.example.lovely.lovelybookreader.fragment.ChildViewPager>
+       android:text="第二个页面"/>
 </RelativeLayout>

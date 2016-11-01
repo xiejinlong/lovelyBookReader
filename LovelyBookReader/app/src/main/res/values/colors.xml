@@ -6,4 +6,5 @@
     <color name="tab_background_color">#FF3F51B5</color>
     <color name="tab_text_color">#FFFFFFFF</color>
     <color name="teb_text_color_unselected">#FF999999</color>
+    <color name="bright_foreground_disabled_holo_dark">#ff4c4c4c</color>
 </resources>

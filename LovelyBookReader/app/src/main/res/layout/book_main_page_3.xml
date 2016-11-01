@@ -5,5 +5,5 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="this is one page"/>
+        android:text="this is three page"/>
 </RelativeLayout>

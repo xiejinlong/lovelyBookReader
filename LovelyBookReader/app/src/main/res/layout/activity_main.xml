@@ -6,51 +6,83 @@
     android:layout_height="match_parent"
     tools:context="com.example.lovely.lovelybookreader.MainActivity">
 
+    <RelativeLayout
+        android:id="@+id/book_header_container"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@android:color/holo_blue_light"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/book_reader_title"
+            android:textSize="28sp"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/background_light"
+            android:layout_marginLeft="20dp"
+            android:text="Reader" />
+
+        <ImageView
+            android:id="@+id/book_moreover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_moreoverflow_mtrl_alpha" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/book_find_image"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/book_moreover"
+            android:src="@drawable/abc_ic_search_api_mtrl_alpha" />
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:id="@+id/book_title_tab"
-        android:background="@color/tab_background_color">
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:clickable="true"
-            android:src="@drawable/book_configure"
-            android:layout_weight="1"/>
+        android:orientation="horizontal"
+        android:background="@android:color/holo_blue_light"
+        android:id="@+id/book_item_viewpager"
+        android:layout_below="@+id/book_header_container">
+
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/book_like"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/book_shelf"
-            android:gravity="center"
-            android:text="书架"
+            android:layout_weight="1"
             android:textColor="@drawable/tab_text_color_selector"
-            android:textSize="24sp"
-            android:layout_weight="1"/>
+            android:gravity="center"
+            android:text="追书" />
+
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/book_community"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="图书"
-            android:textSize="24sp"
+            android:layout_weight="1"
             android:textColor="@drawable/tab_text_color_selector"
-            android:id="@+id/book_library"
             android:gravity="center"
-            android:layout_weight="1"/>
+            android:text="社区" />
+
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/book_find"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="小说"
+            android:layout_weight="1"
             android:textColor="@drawable/tab_text_color_selector"
-            android:id="@+id/book_novel"
-            android:textSize="24sp"
             android:gravity="center"
-            android:layout_weight="1"/>
+            android:text="发现" />
     </LinearLayout>
+
     <android.support.v4.view.ViewPager
+        android:id="@+id/book_main_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/book_main_pager"
-        android:layout_below="@+id/book_title_tab"
-        android:background="@android:color/holo_blue_bright"
-        ></android.support.v4.view.ViewPager>
+        android:layout_below="@+id/book_item_viewpager"
+        android:background="@android:color/background_light"></android.support.v4.view.ViewPager>
 </RelativeLayout>

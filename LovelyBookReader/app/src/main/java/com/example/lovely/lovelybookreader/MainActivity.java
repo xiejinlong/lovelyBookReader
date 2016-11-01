@@ -1,38 +1,36 @@
 package com.example.lovely.lovelybookreader;
 
 import android.support.v4.app.Fragment;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lovely.lovelybookreader.adapter.BookFragmentAdapter;
-import com.example.lovely.lovelybookreader.fragment.BookMainFragmentPage1;
-import com.example.lovely.lovelybookreader.fragment.BookMainFragmentPage2;
-import com.example.lovely.lovelybookreader.fragment.BookMainFragmentPage3;
+import com.example.lovely.lovelybookreader.fragment.BookCommunityFragment;
+import com.example.lovely.lovelybookreader.fragment.BookFinderFragment;
+import com.example.lovely.lovelybookreader.fragment.BookPursueFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener{
+public class MainActivity extends FragmentActivity implements View.OnClickListener {
     private ViewPager viewPager;
-    private TextView bookShelfText;
-    private TextView bookText;
-    private TextView novelText;
+    private View bookReaderTitle;
+    private View bookReaderFinder;
+    private View bookReaderMore;
+    private TextView bookPursue;
+    private TextView bookCommunity;
+    private TextView bookFind;
     private List<Fragment> fragmentList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         initView();
         initViewPager();
@@ -48,27 +46,42 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
     private void initView() {
         viewPager = (ViewPager) findViewById(R.id.book_main_pager);
-        bookShelfText = (TextView) findViewById(R.id.book_shelf);
-        bookText = (TextView) findViewById(R.id.book_library);
-        novelText = (TextView) findViewById(R.id.book_novel);
-        bookShelfText.setOnClickListener(this);
-        bookText.setOnClickListener(this);
-        novelText.setOnClickListener(this);
-        bookShelfText.setSelected(true);
+
+        bookReaderTitle = findViewById(R.id.book_reader_title);
+        bookReaderFinder = findViewById(R.id.book_find_image);
+        bookReaderMore = findViewById(R.id.book_moreover);
+
+        bookPursue = (TextView) findViewById(R.id.book_like);
+        bookCommunity = (TextView) findViewById(R.id.book_community);
+        bookFind = (TextView) findViewById(R.id.book_find);
+
+        initClickListener();
+        bookPursue.setSelected(true);
+    }
+
+    private void initClickListener() {
+        bookReaderFinder.setOnClickListener(this);
+        bookReaderTitle.setOnClickListener(this);
+        bookReaderMore.setOnClickListener(this);
+
+        bookPursue.setOnClickListener(this);
+        bookCommunity.setOnClickListener(this);
+        bookFind.setOnClickListener(this);
     }
 
     private void initViewPager() {
         fragmentList = new ArrayList<>();
-       BookMainFragmentPage1 fragmentPage1 = new BookMainFragmentPage1();
-       BookMainFragmentPage2 fragmentPage2 = new BookMainFragmentPage2();
-        BookMainFragmentPage3 fragmentPage3 = new BookMainFragmentPage3();
+        BookPursueFragment fragmentPage1 = new BookPursueFragment();
+        BookCommunityFragment fragmentPage2 = new BookCommunityFragment();
+        BookFinderFragment fragmentPage3 = new BookFinderFragment();
         fragmentList.add(fragmentPage1);
-      fragmentList.add(fragmentPage2);
-       fragmentList.add(fragmentPage3);
-       viewPager.setAdapter(new BookFragmentAdapter(getSupportFragmentManager(),fragmentList));
+        fragmentList.add(fragmentPage2);
+        fragmentList.add(fragmentPage3);
+        viewPager.setAdapter(new BookFragmentAdapter(getSupportFragmentManager(), fragmentList));
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            public void onPageScrolled(int position, float positionOffset,
+                    int positionOffsetPixels) {
 
             }
 
@@ -76,19 +89,19 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
             public void onPageSelected(int position) {
                 switch (position) {
                     case 0:
-                       bookShelfText.setSelected(true);
-                        bookText.setSelected(false);
-                        novelText.setSelected(false);
+                        bookPursue.setSelected(true);
+                        bookCommunity.setSelected(false);
+                        bookFind.setSelected(false);
                         break;
                     case 1:
-                        bookShelfText.setSelected(false);
-                        bookText.setSelected(true);
-                        novelText.setSelected(false);
+                        bookPursue.setSelected(false);
+                        bookCommunity.setSelected(true);
+                        bookFind.setSelected(false);
                         break;
                     case 2:
-                        bookShelfText.setSelected(false);
-                        novelText.setSelected(true);
-                        bookText.setSelected(false);
+                        bookPursue.setSelected(false);
+                        bookFind.setSelected(true);
+                        bookCommunity.setSelected(false);
                         break;
                     default:
                         break;
@@ -105,22 +118,22 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.book_shelf:
-                bookShelfText.setSelected(true);
-                bookText.setSelected(false);
-                novelText.setSelected(false);
+            case R.id.book_like:
+                bookPursue.setSelected(true);
+                bookCommunity.setSelected(false);
+                bookFind.setSelected(false);
                 viewPager.setCurrentItem(0);
                 break;
-            case R.id.book_library:
-                bookShelfText.setSelected(true);
-                bookText.setSelected(true);
-                novelText.setSelected(false);
+            case R.id.book_community:
+                bookPursue.setSelected(true);
+                bookCommunity.setSelected(true);
+                bookFind.setSelected(false);
                 viewPager.setCurrentItem(1);
                 break;
-            case R.id.book_novel:
-                bookShelfText.setSelected(true);
-                bookText.setSelected(false);
-                novelText.setSelected(true);
+            case R.id.book_find:
+                bookPursue.setSelected(true);
+                bookCommunity.setSelected(false);
+                bookFind.setSelected(true);
                 viewPager.setCurrentItem(2);
                 break;
             default:
@@ -129,9 +142,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     }
 
     private long lastBackClickTime = 0;
+
     private void exitBy2Click() {
         if ((System.currentTimeMillis() - lastBackClickTime) > 2000) {
-            Toast.makeText(this,"再次点击退出",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "再次点击退出", Toast.LENGTH_SHORT).show();
             lastBackClickTime = System.currentTimeMillis();
         } else {
             finish();
