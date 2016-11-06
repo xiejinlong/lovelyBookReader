@@ -2,15 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="this is one page"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="测试点击事件"
-        android:clickable="true"
-        android:id="@+id/book_button_text"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/book_like_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:listSelector="@android:color/transparent"
+        android:paddingLeft="10dp"
+        android:paddingRight="8dp"
+        android:scrollbars="none"
+        android:transcriptMode="normal"
         />
 </LinearLayout>

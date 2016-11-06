@@ -4,12 +4,18 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.app.AlertDialog;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.lovely.lovelybookreader.adapter.BookFragmentAdapter;
+import com.example.lovely.lovelybookreader.adapter.SettingAdapter;
 import com.example.lovely.lovelybookreader.fragment.BookCommunityFragment;
 import com.example.lovely.lovelybookreader.fragment.BookFinderFragment;
 import com.example.lovely.lovelybookreader.fragment.BookPursueFragment;
@@ -26,6 +32,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private TextView bookCommunity;
     private TextView bookFind;
     private List<Fragment> fragmentList;
+    private ListView listView;
+    private AlertDialog builder;
+    private SettingAdapter sa;
+
+    private List<String> listName = new ArrayList<>();
+    private List<Integer> listRes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +45,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         // getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         initView();
+        builder = new AlertDialog.Builder(this).create();
         initViewPager();
     }
 
@@ -57,6 +70,30 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
 
         initClickListener();
         bookPursue.setSelected(true);
+        initListView();
+    }
+
+    private void initListView() {
+        listName.add("请登录");
+        listName.add("我的消息");
+        listName.add("同步书架");
+        listName.add("扫描本地书籍");
+        listName.add("Wifi传书");
+        listName.add("意见反馈");
+        listName.add("夜间模式");
+        listName.add("设置");
+
+        listRes.add(R.drawable.home_menu_0);
+        listRes.add(R.drawable.home_menu_1);
+        listRes.add(R.drawable.home_menu_2);
+        listRes.add(R.drawable.home_menu_3);
+        listRes.add(R.drawable.home_menu_4);
+        listRes.add(R.drawable.home_menu_5);
+        listRes.add(R.drawable.theme_night);
+        listRes.add(R.drawable.home_menu_6);
+
+
+        sa = new SettingAdapter(listRes,listName);
     }
 
     private void initClickListener() {
@@ -136,9 +173,28 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
                 bookFind.setSelected(true);
                 viewPager.setCurrentItem(2);
                 break;
+            case R.id.book_moreover:
+                listView = (ListView) View.inflate(getApplicationContext(),R.layout.book_list_view,null);
+                listView.setAdapter(sa);
+                builder.setView(listView);
+                builder.show();
+                setDialogPosition();
+                break;
             default:
                 break;
         }
+    }
+
+    private void setDialogPosition() {
+        Window window  = builder.getWindow();
+        WindowManager.LayoutParams lp = window.getAttributes();
+        window.setGravity(Gravity.RIGHT | Gravity.TOP);
+        lp.x = 10;
+        lp.y = 100;
+        lp.width = 500;
+        lp.height = 600;
+        window.setAttributes(lp);
+
     }
 
     private long lastBackClickTime = 0;

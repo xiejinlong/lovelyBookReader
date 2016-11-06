@@ -85,4 +85,6 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/book_item_viewpager"
         android:background="@android:color/background_light"></android.support.v4.view.ViewPager>
+
+
 </RelativeLayout>
